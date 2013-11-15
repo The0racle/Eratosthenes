@@ -1,0 +1,69 @@
+/*
+ *
+ * University of Advancing Technology Standard C++ Template Driver
+ *
+ * Name: Driver.cpp
+ * Student: Default Student
+ *
+ */
+
+#include "StandardIncludes.h"
+#include <math.h>
+#define MAX_PRIME 10000000
+
+void setPrimeArrayToZero(int* primeArray);
+void sieveOfEratothenes(int* array);
+void printPrimes(int* array);
+
+int main()
+{
+	int* primeArray = new int[MAX_PRIME];
+
+	setPrimeArrayToZero(primeArray);
+	sieveOfEratothenes(primeArray);
+	printPrimes(primeArray);
+
+	return 0;
+}
+
+void setPrimeArrayToZero(int* primeArray)
+{
+	for (unsigned int indexArray = 1; indexArray < MAX_PRIME; ++indexArray)
+	{
+		primeArray[indexArray] = 0;
+	}
+}
+
+void sieveOfEratothenes(int* array)
+{
+	int n, m;
+
+	for (n = 2; n < sqrt(MAX_PRIME); ++n)
+	{
+		for (m = 2; m < sqrt(MAX_PRIME); ++m)
+		{
+			array[n * m] = 1;
+		}
+	}
+}
+
+void printPrimes(int* array)
+{
+	int count = 0;
+
+	cout << "Prime numbers" << endl;
+	for (unsigned int indexArray = 1; indexArray < MAX_PRIME; ++indexArray)
+	{
+		if (array[indexArray] == 1)
+		{
+			cout << array[indexArray] << endl;
+			count++;
+		}
+
+		if (count == 100)
+		{
+			break;
+		}
+	}
+}
+
